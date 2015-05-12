@@ -1,0 +1,164 @@
+* {
+  font-family: Microsoft YaHei;
+  margin: 0px;
+  padding: 0px;
+}
+.header {
+  height: 2.84375rem;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#ffb325, endColorStr=#ffa225);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, #ffb325, #ffa225);
+  /* IE 10 */
+  background: -moz-linear-gradient(top, #ffb325, #ffa225);
+  /*火狐*/
+  /*谷歌*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffb325), to(#ffa225));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, #ffb325, #ffa225);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #ffb325, #ffa225);
+  /*Opera 11.10+*/
+  color: #ffffff;
+  -webkit-box-shadow: 0px 2px 2px 1px #ebebeb;
+  -moz-box-shadow: 0px 2px 2px 1px #ebebeb;
+  box-shadow: 0px 2px 2px 1px #ebebeb;
+  position: relative;
+}
+.header_center {
+  width: 10.25rem;
+  height: 2.25rem;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.header_logo {
+  height: 2rem;
+  margin-top: 4px;
+  float: left;
+}
+.header_title {
+  font-size: 1.75rem;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  float: left;
+}
+.content {
+  width: 100%;
+  background-color: #efeff4;
+}
+.personal_info {
+  width: 100%;
+  background-color: #ffffff;
+}
+.basic_info {
+  width: 100%;
+  height: 4.75rem;
+  overflow: hidden;
+  border-bottom: 1px solid #e5e5e5;
+}
+.face {
+  margin: 0.875rem 1.0625rem auto 0.875rem;
+  width: 3.0625rem;
+  height: 3.0625rem;
+  float: left;
+}
+.na_nu {
+  height: 2.9375rem;
+  max-width: 16.5rem;
+  overflow: hidden;
+  margin-top: 1rem;
+  float: left;
+}
+.name {
+  font-size: 1rem;
+}
+.num {
+  max-width: 8.25rem;
+  margin-top: 0.625rem;
+  font-size: 0.75rem;
+  color: #9b9a9a;
+}
+.basic_integral {
+  width: 100%;
+  height: 2.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.basic_integral div {
+  width: 49.5%;
+  height: 100%;
+  border-left: 1px solid #e5e5e5;
+  float: left;
+}
+.inte_name {
+  margin-left: 1rem;
+  margin-top: 0.8125rem;
+  font-size: 0.8125rem;
+  float: left;
+}
+.inte_value {
+  max-width: 4.5625rem;
+  margin-right: 1rem;
+  margin-top: 0.8125rem;
+  font-size: 0.75rem;
+  color: #666666;
+  float: right;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.all_detail {
+  width: 100%;
+}
+.detail {
+  width: 100%;
+  height: 3rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.det_img {
+  width: 1.90625rem;
+  height: 1.65625rem;
+  margin-top: 0.6875rem;
+  margin-left: 0.9375rem;
+  float: left;
+}
+.det_name {
+  font-size: 0.9375rem;
+  margin-top: 0.875rem;
+  margin-left: 0.8125rem;
+  float: left;
+}
+.det_value {
+  max-width: 6.25rem;
+  margin-top: 1.0625rem;
+  margin-right: 0.9375rem;
+  font-size: 0.75rem;
+  color: #666666;
+  float: right;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.rank {
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 1.1875rem;
+  background-color: #ffffff;
+}
+.rank_name {
+  color: #666666;
+  font-size: 0.75rem;
+}
+.rank_n {
+  margin-top: 0.875rem;
+  margin-left: 1.78125rem;
+  font-size: 0.8125rem;
+  float: left;
+}
