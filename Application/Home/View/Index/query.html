@@ -43,7 +43,7 @@
         </form>
     </div>
 
-    <div class="p_10 animated" id="result" v-show="show" v-transition="bounce">
+    <div class="p_10 animated dn" id="result" v-show="show" v-transition="bounce">
         <div class="form-item cf">
             <div><span class="left">考生姓名：</span><span class="right orange">{{tname}}</span></div>
         </div>
@@ -68,17 +68,17 @@
         <div class="form-item cf">
             <div><span class="left">写作和翻译：</span><span class="right">{{writing}}</span></div>
         </div>
-        <p class="description">姓名中的生僻字可能无法正常显示,以成绩单为准。四级成绩为500分以上（含500分），或六级成绩为425分以上（含425分），具备口试报名资格，详情见www.cet.edu.cn</p>
+        <p class="description">姓名中的生僻字可能无法正常显示,以成绩单为准。四级成绩为500分以上（含500分），或六级成绩为425分以上（含425分），具备口试报名资格，详情见 <a
+                href="http://www.cet.edu.cn/">http://www.cet.edu.cn</a> .</p>
         <div class="form-item cf tb pt_10">
             <button v-on="click:back" class="home_btn submit-btn mb_10 flex_1 submit" type="submit" target-form="form-horizontal">返回</button>
         </div>
     </div>
-    <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站</p>
+    <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站 出品</p>
 </div>
 
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-<script src="__PUBLIC__/js/dialog.js"></script>
 <script src="__PUBLIC__/js/vue.min.js"></script>
-<script src="__PUBLIC__/js/main.js"></script>
+<script src="__PUBLIC__/js/main.min.js"></script>
 </body>
 </html>
