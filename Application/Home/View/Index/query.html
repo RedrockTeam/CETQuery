@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>四六级查询</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/main.css" media="all">
+</head>
+
+<body>
+<div class="container body">
+    <img src="__PUBLIC__/images/46.png" width="100%"/>
+    <div class="p_10 animated" id="query" v-show="show" v-transition="bounce">
+        <!-- 表单 -->
+        <form id="form" >
+            <!-- 基础文档模型 -->
+            <div id="tab1" class="tab-pane">
+                <div class="form-item cf">
+                    <!--<label class="item-label">考生姓名</label>-->
+                    <div class="controls">
+                        <input type="text" name="username" class="input" placeholder="请输入姓名" v-model="username"/>
+                    </div>
+                </div>
+                <div class="form-item cf">
+                    <!--<label class="item-label">准考证号</label>-->
+                    <div class="controls">
+                        <input type="tel" name="id" class="input" placeholder="请输入四六级准考证号" v-model="id"/>
+                    </div>
+                </div>
+                <div class="form-item cf tb pt_10">
+                    <button v-on="click:query" class="home_btn submit-btn mb_10 flex_1 submit" type="submit" target-form="form-horizontal">查询</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="p_10 animated" id="result" v-show="show" v-transition="bounce">
+        <div class="form-item cf">
+            <div><span class="left">考生姓名：</span><span class="right orange">{{tname}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">学校：</span><span class="right orange">{{tschool}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">考试类别：</span><span class="right orange">{{ttype}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">准考证号：</span><span class="right orange">{{tid}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">您的成绩总分：</span><span class="right bold">{{all}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">听力：</span><span class="right">{{listening}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">阅读：</span><span class="right">{{reading}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">写作和翻译：</span><span class="right">{{writing}}</span></div>
+        </div>
+        <p class="description">姓名中的生僻字可能无法正常显示,以成绩单为准。四级成绩为500分以上（含500分），或六级成绩为425分以上（含425分），具备口试报名资格，详情见www.cet.edu.cn</p>
+        <div class="form-item cf tb pt_10">
+            <button v-on="click:back" class="home_btn submit-btn mb_10 flex_1 submit" type="submit" target-form="form-horizontal">返回</button>
+        </div>
+    </div>
+    <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站</p>
+</div>
+
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="__PUBLIC__/js/dialog.js"></script>
+<script src="__PUBLIC__/js/vue.min.js"></script>
+<script src="__PUBLIC__/js/main.js"></script>
+</body>
+</html>

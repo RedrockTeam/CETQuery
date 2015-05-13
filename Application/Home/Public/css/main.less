@@ -1,0 +1,92 @@
+@import "fontawesome";
+@import "mobile_basic";
+
+//body{
+//  background-color: #f7f7f7;
+//}
+
+.body{
+  -webkit-font-smoothing: antialiased;
+  .left, .right{
+    .inline-block();
+  }
+  .left{
+    text-align: right;
+    width: 150px;
+  }
+
+  .right{
+    width: 185px;
+    padding-left: 15px;
+  }
+}
+
+
+.center{
+  text-align: center;
+}
+
+#form{
+  text-align: center;
+  .input{
+    text-align: center;
+  }
+}
+.submit{
+  cursor: pointer;
+}
+#result .cf{
+  width: 350px;
+  margin: 0 auto;
+  line-height: 1.8em;
+}
+.bold{
+  font-weight: bold;
+}
+.orange{
+  color: #FF6404;
+}
+.description{
+  font-size: 12px;
+  color: #575757;
+  margin: 15px;
+}
+
+
+//.animated {
+//  display: inline-block;
+//}
+.animated.bounce-enter {
+  animation: bounce-in .5s;
+}
+.animated.bounce-leave {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% {
+//    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+//    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+//    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes bounce-out {
+  0% {
+//    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+//    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+//    transform: scale(0);
+    opacity: 0;
+  }
+}
