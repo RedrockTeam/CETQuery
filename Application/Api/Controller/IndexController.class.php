@@ -8,32 +8,32 @@ class IndexController extends Controller {
 
     public function find(){
         if(!IS_POST) {
-            return $this->ajaxReturn([
+            return $this->ajaxReturn(array(
                 "status" => "-2",
                 "info" => "invalid method"
-            ]);
+            ));
         }
         $_username = I('post.username');
         $_id = I('post.id');
         if(empty($_username) || empty($_id)){
-            return $this->ajaxReturn([
+            return $this->ajaxReturn(array(
                 "status" => "-1",
                 "info" => "invalid data"
-            ]);
+            ));
         }
 
         $arr = $this->proxy($_id, $_username);
         if(count($arr) == 1){
-            return $this->ajaxReturn([
+            return $this->ajaxReturn(array(
                 "status" => "-3",
                 "info" => "invalid return"
-            ]);
+            ));
         }
-        return $this->ajaxReturn([
+        return $this->ajaxReturn(array(
             "status" => "0",
             "info" => "Success",
             "data" => $arr
-        ]);
+        ));
     }
 
     private function proxy($id, $name) {
