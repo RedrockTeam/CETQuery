@@ -18,104 +18,102 @@
 </head>
 
 <body>
-<div class="wrapper">
-    <div class="dialog-cont"></div>
+<div class="container body">
     <img class="top-img" src="__PUBLIC__/images/46.png" width="100%"/>
-
-    <div class="container body">
-        <nav class="tabs">
-            <ul class="pager">
-                <li class="previous active">
-                    <a href="#"><span aria-hidden="true">&larr;</span> 快速查询</a>
-                </li>
-                <li class="next">
-                    <a href="#">无准考证查询 <span aria-hidden="true">&rarr;</span></a>
-                </li>
-            </ul>
-        </nav>
-        <div class="tabs-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="animated query content-slide" id="query" v-show="show" v-transition="bounce">
-                        <!-- 正常查询表单 -->
-                        <form id="form">
-                            <input type="text" name="username" class="input form-control" placeholder="请输入姓名" v-model="username">
-                            <input type="tel" name="id" class="input form-control" placeholder="请输入四六级准考证号" v-model="id">
-                            <button v-on="click:query" class="btn btn-success btn-line" type="submit" target-form="form-horizontal">查询</button>
-                        </form>
-                    </div>
+    <nav class="tabs">
+        <ul class="pager">
+            <li class="previous active">
+                <a href="#"><span aria-hidden="true">&larr;</span> 快速查询</a>
+            </li>
+            <li class="next">
+                <a href="#">无准考证查询 <span aria-hidden="true">&rarr;</span></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="tabs-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="animated query content-slide" id="query" v-show="show" v-transition="bounce">
+                    <!-- 正常查询表单 -->
+                    <form id="form">
+                        <input type="text" name="username" class="input form-control" placeholder="请输入姓名" v-model="username">
+                        <input type="tel" name="id" class="input form-control" placeholder="请输入四六级准考证号" v-model="id">
+                        <button v-on="click:query" class="btn btn-success btn-line" type="submit" target-form="form-horizontal">查询</button>
+                    </form>
                 </div>
-                <div class="swiper-slide">
-                    <div class="animated query content-slide" id="noTicketQuery" v-show="show" v-transition="bounce">
-                        <!-- 无准考证查询表单 -->
-                        <form id="noTicketForm" >
-                            <input type="text" name="username" class="input form-control" placeholder="请输入姓名" v-model="username">
+            </div>
+            <div class="swiper-slide">
+                <div class="animated query content-slide" id="noTicketQuery" v-show="show" v-transition="bounce">
+                    <!-- 无准考证查询表单 -->
+                    <form id="noTicketForm" >
+                        <input type="text" name="username" class="input form-control" placeholder="请输入姓名" v-model="username">
 
-                            <input type="text" class="input form-control" v-model="province" placeholder="请选择省份">
-                            <select class="form-control select" style="top:44px;" v-model="province" options="provinces"></select>
+                        <input type="text" class="input form-control" v-model="province" placeholder="请选择省份">
+                        <select class="form-control select" style="top:44px;" v-model="province" options="provinces"></select>
 
-                            <input type="text" class="input form-control" v-model="school" placeholder="请选择学校">
-                            <select class="form-control select" style="top:97px;" v-model="school" options="schools"></select>
+                        <input type="text" class="input form-control" v-model="school" placeholder="请选择学校">
+                        <select class="form-control select" style="top:97px;" v-model="school" options="schools"></select>
 
-                            <input type="text" class="input form-control" v-model="type" placeholder="请选择四/六级">
-                            <select class="form-control select" style="top:147px;" v-model="type">
-                                <option value="四级">四级</option>
-                                <option value="六级">六级</option>
-                            </select>
+                        <input type="text" class="input form-control" v-model="type" placeholder="请选择四/六级">
+                        <select class="form-control select" style="top:147px;" v-model="type">
+                            <option value="四级">四级</option>
+                            <option value="六级">六级</option>
+                        </select>
 
-                            <p class="no-ticker-helper">
-                                !!!注意!!!无准考证查询功能仅供参考，如遇校内重名等本系统会无法返回准确信息，请联系报考学校查询。
-                            </p>
-                            <button v-on="click:query" class="btn btn-success btn-line" type="submit" target-form="form-horizontal">查询</button>
-                        </form>
-                    </div>
+                        <p class="no-ticker-helper">
+                            !!!注意!!!无准考证查询功能仅供参考，如遇校内重名等本系统会无法返回准确信息，请联系报考学校查询。
+                        </p>
+                        <button v-on="click:query" class="btn btn-success btn-line" type="submit" target-form="form-horizontal">查询</button>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <!--结果-->
-        <div class="animated dn" id="result" v-show="show" v-transition="bounce">
-            <div class="form-item cf">
-                <div><span class="left">考生姓名：</span><span class="right orange">{{tname}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">学校：</span><span class="right orange">{{tschool}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">考试类别：</span><span class="right orange">{{ttype}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">准考证号：</span><span class="right orange">{{tid}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">您的成绩总分：</span><span class="right bold">{{all}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">听力：</span><span class="right">{{listening}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">阅读：</span><span class="right">{{reading}}</span></div>
-            </div>
-            <div class="form-item cf">
-                <div><span class="left">写作和翻译：</span><span class="right">{{writing}}</span></div>
-            </div>
-            <p class="description">姓名中的生僻字可能无法正常显示,以成绩单为准。四级成绩为500分以上（含500分），或六级成绩为425分以上（含425分），具备口试报名资格，详情见 <a
-                    href="http://www.cet.edu.cn/">http://www.cet.edu.cn</a> .</p>
-            <div class="form-item cf tb pt_10">
-                <button v-on="click:back" class="btn btn-default btn-line" target-form="form-horizontal">返回</button>
-            </div>
-        </div>
-
-        <p class="public-info">
-            2015年6月成绩还未公布, 请等待官方通知. 目前仍可查询2014年12月CET4/6成绩.
-        </p>
-        <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站
-            <a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">@Ling.</a>
-        </p>
-        <p class="comment"><a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">意见反馈</a> <a
-                href="mailto://cet@zeroling.com">Email</a></p>
     </div>
+
+    <!--结果-->
+    <div class="animated dn" id="result" v-show="show" v-transition="bounce">
+        <div class="form-item cf">
+            <div><span class="left">考生姓名：</span><span class="right orange">{{tname}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">学校：</span><span class="right orange">{{tschool}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">考试类别：</span><span class="right orange">{{ttype}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">准考证号：</span><span class="right orange">{{tid}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">您的成绩总分：</span><span class="right bold">{{all}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">听力：</span><span class="right">{{listening}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">阅读：</span><span class="right">{{reading}}</span></div>
+        </div>
+        <div class="form-item cf">
+            <div><span class="left">写作和翻译：</span><span class="right">{{writing}}</span></div>
+        </div>
+        <p class="description">姓名中的生僻字可能无法正常显示,以成绩单为准。四级成绩为500分以上（含500分），或六级成绩为425分以上（含425分），具备口试报名资格，详情见 <a
+                href="http://www.cet.edu.cn/">http://www.cet.edu.cn</a> .</p>
+        <div class="form-item cf tb pt_10">
+            <button v-on="click:back" class="btn btn-default btn-line" target-form="form-horizontal">返回</button>
+        </div>
+    </div>
+
+    <p class="public-info">
+        2015年6月成绩还未公布, 请等待官方通知. 目前仍可查询2014年12月CET4/6成绩.
+    </p>
+    <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">@Ling.</a>
+    </p>
+    <p class="comment"><a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">意见反馈</a> <a
+            href="mailto://cet@zeroling.com">Email</a></p>
 </div>
+
+<div class="dialog-cont"></div>
 
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>
