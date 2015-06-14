@@ -166,7 +166,7 @@
             type: "", //1->4级, 2->6级
 
             provinces: provinces,
-            schools: []
+            schools: [{text: '请先选择省份', value: ''}]
         },
         methods: {
             query: function(e){
@@ -191,7 +191,7 @@
                     username: this.username,
                     province: this.province,
                     school: this.school,
-                    type: this.type == "四级" ? 1 : (this.type == "六级" ? 2 : 1)
+                    type: this.type,
                 }).success(function(res){
                     if(res.status == 0){
                         $.Dialog.success("查询成功, 载入中...");
@@ -222,9 +222,16 @@
         }
     });
     vmNoticketQuery.$watch('province', function(p){
-        vmNoticketQuery['schools'] = school[p][1].map(function(_school){
-            return {text: _school, value: _school};
-        });
+        vmNoticketQuery['school'] = '';
+        var ret;
+        try{
+            ret = school[p][1].map(function(_school){
+                return {text: _school, value: _school};
+            });
+        }catch(e){
+            return vmNoticketQuery['schools'] = [{text: '请先选择省份', value: ''}];
+        }
+        vmNoticketQuery['schools'] = ret;
     });
 
     var vmResult = new Vue({

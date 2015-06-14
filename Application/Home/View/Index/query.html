@@ -54,19 +54,31 @@
                         <input type="text" class="input form-control" v-model="school" placeholder="请选择学校">
                         <select class="form-control select" style="top:97px;" v-model="school" options="schools"></select>
 
-                        <input type="text" class="input form-control" v-model="type" placeholder="请选择四/六级">
-                        <select class="form-control select" style="top:147px;" v-model="type">
-                            <option value="四级">四级</option>
-                            <option value="六级">六级</option>
-                        </select>
+                        <label class="radio-inline">
+                            <input type="radio" value="1" v-model="type" checked>四级
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="2" v-model="type">六级
+                        </label>
 
-                        <p class="no-ticker-helper">
+                        <p class="no-ticket-helper text-warning">
                             !!!注意!!!无准考证查询功能仅供参考，如遇校内重名等本系统会无法返回准确信息，请联系报考学校查询。
                         </p>
                         <button v-on="click:query" class="btn btn-success btn-line" type="submit" target-form="form-horizontal">查询</button>
                     </form>
                 </div>
             </div>
+        </div>
+
+        <div class="row footer">
+            <p class="public-info">
+                2015年6月成绩还未公布, 请等待官方通知. 目前仍可查询2014年12月CET4/6成绩.
+            </p>
+            <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">@Ling.</a>
+            </p>
+            <p class="comment"><a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">意见反馈</a> <a
+                    href="mailto://cet@zeroling.com">Email</a></p>
         </div>
     </div>
 
@@ -101,16 +113,18 @@
         <div class="form-item cf tb pt_10">
             <button v-on="click:back" class="btn btn-default btn-line" target-form="form-horizontal">返回</button>
         </div>
-    </div>
 
-    <p class="public-info">
-        2015年6月成绩还未公布, 请等待官方通知. 目前仍可查询2014年12月CET4/6成绩.
-    </p>
-    <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站
-        <a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">@Ling.</a>
-    </p>
-    <p class="comment"><a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">意见反馈</a> <a
-            href="mailto://cet@zeroling.com">Email</a></p>
+        <div class="row footer-normal">
+            <p class="public-info">
+                2015年6月成绩还未公布, 请等待官方通知. 目前仍可查询2014年12月CET4/6成绩.
+            </p>
+            <p class="copyright">2015 &copy; 重庆邮电大学 红岩网校工作站
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">@Ling.</a>
+            </p>
+            <p class="comment"><a href="http://wpa.qq.com/msgrd?v=3&uin=363130901&site=qq&menu=yes" target="_blank">意见反馈</a> <a
+                    href="mailto://cet@zeroling.com">Email</a></p>
+        </div>
+    </div>
 </div>
 
 <div class="dialog-cont"></div>
@@ -125,6 +139,7 @@
         onSlideChangeStart: function(){
             $(".tabs .active").removeClass('active')
             $(".tabs li").eq(tabsSwiper.activeIndex).addClass('active')
+            $('.footer').css('top', $('.swiper-slide-active').height() + 'px');
         }
     });
     $(".tabs li").on('touchstart mousedown',function(e){
@@ -136,6 +151,7 @@
     $(".tabs li").click(function(e){
         e.preventDefault()
     });
+//    $('.footer').css('top', $('.swiper-slide-active').height() + 'px');
 </script>
 <script src="__PUBLIC__/js/main.min.js"></script>
 </body>
