@@ -150,10 +150,16 @@ class IndexController extends Controller {
             "info" => "查无此人"
         ));
 
+
+        $data = $this->proxy($tid, $user);
+        if(!$data) {
+            $data = $this->proxy2($tid, $user);
+        }
+
         $this->ajaxReturn(array(
             "status" => "0",
             "tid" => $tid,
-            "data" => $this->proxy($tid, $user)
+            "data" => $data
         ));
     }
 }
