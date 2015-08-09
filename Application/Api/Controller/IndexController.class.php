@@ -23,6 +23,11 @@ class IndexController extends Controller {
         }
 
         $ret = $this->proxy($_id, $_username);
+
+        if(!$ret) {
+            $ret = $this->proxy2($_id, $_username);
+        }
+
         if(!$ret){
             return $this->ajaxReturn(array(
                 "status" => "-3",
