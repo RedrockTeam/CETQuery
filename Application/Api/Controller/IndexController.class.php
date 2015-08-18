@@ -139,7 +139,7 @@ class IndexController extends Controller {
     }
 
     public function noTicketQuery(){
-        if (stripos($_SERVER['HTTP_REFERER'], 'http://115.159.64.43/CETQuery') !== false) {
+        if (stripos($_SERVER['HTTP_REFERER'], '115.159.64.43') === false) {
             return die('');
         }
         $user = I('post.username');
