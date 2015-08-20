@@ -1,14 +1,28 @@
 #!/usr/bin/env python
 # coding=utf-8
-
-import requests
 import CetConfig
-import sys
+from random import randint
 from ctypes import CDLL, c_char, c_int, byref, \
     create_string_buffer, Structure, Union
 
+try:
+    import requests
+except ImportError:
+    print 'You need to install requests to use full functions.'
+
+
+def random_mac():
+    return '%.2X-%.2X-%.2X-%.2X-%.2X-%.2X' % (randint(0, 16), randint(0, 16), 
+                                              randint(0, 16), randint(0, 16), 
+                                              randint(0, 16), randint(0, 16))
+
+
 DES_cblock = c_char * 8
 DES_LONG = c_int
+
+
+class TicketNotFound(Exception):
+    pass
 
 
 class ks(Union):
@@ -24,7 +38,7 @@ class DES_key_schedule(Structure):
     ]
 
 
-class CetCrypter(object):
+class CetCipher(object):
 
     ticket_number_key = '(YesuNRY'
     request_data_key = '?!btwNP^'
@@ -81,61 +95,76 @@ class CetCrypter(object):
         return self.process_data(request_data, self.request_data_key, is_enc=self.ENCRYPT)
 
 
+class CetCipher(CetCipher):
+
+    ticket_number_enc_key = ')XdsuORX'
+    ticket_number_dec_key = '(YesuNRY'
+
+    def encrypt_ticket_number(self, ticket_number):
+        ciphertext = self.process_data(ticket_number,
+                                       self.ticket_number_enc_key, is_enc=self.ENCRYPT)
+        return ciphertext
+
+    def decrypt_ticket_number(self, ciphertext):
+        ciphertext = ciphertext[2:]
+        return self.process_data(ciphertext, self.ticket_number_enc_key, is_enc=self.DECRYPT)
+
+
 class CetTicket(object):
 
     """
         usage:
         ct = CetTicket()
-        print ct.find_ticket_number(b'重庆', b'重庆邮电大学', b'XXX', cet_type=2)
+        print ct.find_ticket_number(b'浙江', b'浙江海洋学院', b'XXX', cet_type=2)
     """
 
-    search_url = CetConfig.SEARCH_URL
+    search_url = 'http://find.cet.99sushe.com/search'
+    score_url = 'http://cet.99sushe.com/find'
 
     CET4 = 1
     CET6 = 2
 
     @classmethod
-    def find_ticket_number(cls, provice, school, name, examroom='', cet_type=1):
+    def find_ticket_number(cls, province, school, name, examroom='', cet_type=1):
         """
             You can read the `school.json` file to check if your school is supported.
             cet_type:
                     1 ==> cet4
                     2 ==> cet6
         """
-        crypter = CetCrypter()
+        cipher = CetCipher()
 
-        provice_id = CetConfig.PROVICE[provice]
-        param_data = b'type=%d&provice=%d&school=%s&name=%s&examroom=%s' % (cet_type,
-                                                                            provice_id,
-                                                                            school, name, examroom)
+        province_id = CetConfig.PROVINCE[province]
+        param_data = u'type=%d&provice=%d&school=%s&name=%s&examroom=%s&m=%s' % (cet_type, province_id,
+                                                                                                school, name, 
+                                                                                                examroom, random_mac())
 
-        param_data = param_data.decode('utf-8').encode('gb2312')
-        encrypted_data = crypter.encrypt_request_data(param_data)
+        param_data = param_data.encode('gb2312')
+        encrypted_data = cipher.encrypt_request_data(param_data)
 
         resp = requests.post(url=cls.search_url, data=encrypted_data)
 
-        ticket_number = crypter.decrypt_ticket_number(resp.content)
+        ticket_number = cipher.decrypt_ticket_number(resp.content)
         if ticket_number == '':
-            raise Exception('Cannot find ticket number.')
+            raise TicketNotFound('Cannot find ticket number.')
 
         return ticket_number
 
     @classmethod
     def get_score(cls, ticket_number, name):
-        if isinstance(name, unicode):
-            name = name.encode('gb2312')
-        else:
-            name = name.decode('utf-8').encode('gb2312')
+        name = name.encode('gb2312')
 
         params_dict = {
             'id': ticket_number,
             'name': name[:4]
         }
 
-        resp = requests.post(url=CetConfig.SCORE_URL,
+        resp = requests.post(url=cls.score_url,
                              data=params_dict,
                              headers={'Referer': 'http://cet.99sushe.com/'})
-        score_data = resp.content.decode('gb2312').encode('utf-8')
+        score_data = resp.content.decode('gb2312')
+        if len(score_data) < 10:
+            return dict(error=True)
         score_data = score_data.split(',')
 
         score = {
@@ -148,3 +177,5 @@ class CetTicket(object):
         }
         return score
 
+if __name__ == '__main__':
+    pass
