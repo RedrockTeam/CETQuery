@@ -115,7 +115,7 @@ class CetTicket(object):
     """
         usage:
         ct = CetTicket()
-        print ct.find_ticket_number(b'浙江', b'浙江海洋学院', b'XXX', cet_type=2)
+        print ct.find_ticket_number(b'重庆', b'重庆邮电大学', b'刘晨凌', cet_type=2)
     """
 
     search_url = 'http://find.cet.99sushe.com/search'
@@ -178,4 +178,7 @@ class CetTicket(object):
         return score
 
 if __name__ == '__main__':
+    # ct = CetTicket()
+    # print ct.find_ticket_number(u'重庆', u'重庆邮电大学', u'刘慧芝', cet_type=CetTicket.CET4)
+    # print CetTicket.get_score('508160151209325', u'刘晨凌')
     pass
