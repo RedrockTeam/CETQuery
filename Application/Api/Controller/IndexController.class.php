@@ -34,6 +34,7 @@ class IndexController extends Controller {
                 "data" => [
                     "name" => $ret['name'],
                     "school" => $ret['school'],
+                    "tid" => $ret['ticket'],
                     "grade" => [
                         "all" => $ret['Total'],
                         "writing" => $ret['Writing'],
@@ -78,6 +79,7 @@ class IndexController extends Controller {
                 "info" => "Success",
                 "data" => [
                     "name" => $ret['name'],
+                    "tid" => $ret['ticket'],
                     "school" => $ret['school'],
                     "grade" => [
                         "all" => $ret['Total'],
