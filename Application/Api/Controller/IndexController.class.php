@@ -3,7 +3,7 @@ namespace Api\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function _initialize() {
-        if (stripos($_SERVER['HTTP_REFERER'], '115.159.64.43') === false) {
+        if (stripos($_SERVER['HTTP_REFERER'], '115.159.64.43') === false && stripos($_SERVER['HTTP_REFERER'], 'cet.lcl.deadsoul.net') === false) {
             return die('invaild');
         }
     }
