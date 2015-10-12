@@ -24,7 +24,7 @@ class IndexController extends Controller {
 
         $ticket = (int)$ticket;
         $name = str_replace(" ", "", $name);
-        $ret = shell_exec("python CetTicket/cet4.py $ticket $name");
+        $ret = shell_exec("python CetTicket/cet4.py '$ticket' '$name'");
         $ret = json_decode($ret, true);
 
         if (empty($ret['error'])) {
@@ -68,8 +68,8 @@ class IndexController extends Controller {
 
         $name = str_replace(" ", "", $name);
         $ret = $type == 1 ?
-            shell_exec("python CetTicket/cet4.py $province $school $name") :
-            shell_exec("python CetTicket/cet6.py $province $school $name");
+            shell_exec("python CetTicket/cet4.py '$province' '$school' '$name'") :
+            shell_exec("python CetTicket/cet6.py '$province' '$school' '$name'");
 
         $ret = json_decode($ret, true);
 
